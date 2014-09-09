@@ -1,17 +1,21 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+[RequireComponent (typeof(CharacterController))]
 public class FP_controller : MonoBehaviour {
-
+	CharacterController characterController;
 	public float movementSpeed = 5.0f;
 	public float mouseSensitivity = 5.0f;
 
+	float verticalVelocity = 0;
 	float verticalRotation = 0;
 	public float updownRange = 60.0f;
+	float jumpSpeed = 7;
 
 	// Use this for initialization
 	void Start () {
 		Screen.lockCursor = true;
+		characterController = GetComponent<CharacterController> ();
 	}
 
 	// Update is called once per frame
@@ -25,13 +29,21 @@ public class FP_controller : MonoBehaviour {
 		Camera.main.transform.localRotation = Quaternion.Euler (verticalRotation, 0, 0);
 		
 		// Movement
+		if (characterController.isGrounded) {
+			if (Input.GetButtonDown ("Jump")) {
+					verticalVelocity = jumpSpeed;
+			}
+		}
+
 		float forwardSpeed = Input.GetAxis ("Vertical") * movementSpeed;
 		float sideSpeed = Input.GetAxis ("Horizontal") * movementSpeed;
 
-		Vector3 speed = new Vector3 (sideSpeed, 0, forwardSpeed);
+
+
+		verticalVelocity += Physics.gravity.y * Time.deltaTime;
+		Vector3 speed = new Vector3 (sideSpeed, verticalVelocity, forwardSpeed);
 		speed = transform.rotation * speed;
 
-		CharacterController cc = GetComponent<CharacterController> ();
-		cc.Move (speed * Time.deltaTime);
+		characterController.Move (speed * Time.deltaTime);
 	}
 }
