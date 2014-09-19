@@ -13,7 +13,7 @@ public class FPS_shooting : MonoBehaviour {
 	void Update () {
 		if (Input.GetButtonDown("Fire1")) {
 			Camera cam = Camera.main;
-			GameObject thebullet = (GameObject)Instantiate(bullet_prefab, cam.transform.position, cam.transform.rotation);
+			GameObject thebullet = (GameObject)Instantiate(bullet_prefab, cam.transform.position + cam.transform.forward, cam.transform.rotation);
 			thebullet.rigidbody.AddForce(cam.transform.forward * bulletImpulse, ForceMode.Impulse);
 		}
 	}

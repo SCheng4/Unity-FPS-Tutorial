@@ -48,6 +48,11 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\FPS_shooting.cs" />
      <Compile Include="Assets\Scripts\FP_controller.cs" />
+     <Compile Include="Assets\Scripts\bullet_detonate.cs" />
+     <None Include="Assets\Standard Assets\Particles\Sources\Shaders\Particle Alpha Blend (Queue +100).shader" />
+ <Reference Include="Assembly-UnityScript-firstpass">
+ <HintPath>C:/Users/Public/Documents/Unity Projects/Unity-FPS-Tutorial/Library/ScriptAssemblies/Assembly-UnityScript-firstpass.dll</HintPath>
+ </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
