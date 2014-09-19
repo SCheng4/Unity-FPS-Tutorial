@@ -3,9 +3,9 @@ using System.Collections;
 
 public class bullet_detonate : MonoBehaviour {
 
-	float lifespan = 3.0f;
+	float lifespan = 1.0f;
+	public GameObject explosionEffect;
 	public GameObject fireEffect;
-
 
 	// Use this for initialization
 	void Start () {
@@ -24,7 +24,7 @@ public class bullet_detonate : MonoBehaviour {
 		if(collision.gameObject.tag == "Enemy") {
 			collision.gameObject.tag = "Untagged";
 			Instantiate(fireEffect, collision.transform.position, Quaternion.identity);
-			Destroy(gameObject);			
+			Instantiate(explosionEffect, collision.transform.position, Quaternion.identity);
 		}
 	}
 
